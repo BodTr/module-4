@@ -62,7 +62,7 @@
                   class="nav-link-title"
                   style="font-size: 15px; font-weight: 600; color: #fff"
                 >
-                  Quản lý sách</span
+                  Quản lý đơn hàng</span
                 >
               </a>
               <div class="dropdown-menu">
@@ -72,11 +72,6 @@
                   ></router-link
                 >
               </div>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="btn btn-ghost-danger" @click="logout()">
-                Đăng xuất
-              </a>
             </li>
           </ul>
         </div>

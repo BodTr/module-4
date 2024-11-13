@@ -73,11 +73,6 @@
                 >
               </div>
             </li>
-            <li class="nav-item">
-              <a href="#" class="btn btn-ghost-danger" @click="logout()">
-                Đăng xuất
-              </a>
-            </li>
           </ul>
         </div>
       </div>

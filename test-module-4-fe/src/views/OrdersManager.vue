@@ -144,85 +144,31 @@
           ></button>
         </div>
         <div class="modal-body row row-cards">
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label for="bookTitle" class="form-label">Tên sản phẩm</label>
-              <input
-                v-model="title"
-                id="bookTitle"
-                type="text"
-                class="form-control"
-                placeholder="Nhập tên sách"
-                name="title"
-              />
-            </div>
-
-            <div class="mb-3">
-              <label for="authorId" class="form-label required"
-                >Chọn tác giả</label
-              >
-              <select  class="form-select" v-model="authorId" id="authorId" name="authorId">
-                <option value="" selected disabled>Danh sách tác giả</option>
-                <option v-for="author in authors" :key="author.id" :value="author.id">{{ author.name }}</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="publisher" class="form-label">Nhà xuất bản</label>
-              <input
-                v-model="publisher"
-                id="publisher"
-                type="text"
-                class="form-control"
-                placeholder="Nhập tên nhà xuất bản"
-                name="publisher"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="isbn" class="form-label">Mã ISBN</label>
-              <input
-                v-model="isbn"
-                id="isbn"
-                type="text"
-                class="form-control"
-                placeholder="Nhập mã isbn"
-                name="isbn"
-              />
-            </div>
+          <div class="mb-3">
+            <label for="itemId" class="form-label" >Tên sản phẩm</label>
+            <select class="form-select" v-model="itemId">
+              <option value="" selected disabled>Danh sách sản phẩm</option>
+              <option v-for="item in items" :key="item.id" :value="item.id">{{ item.name }} - Loại sản phẩm: {{ item.itemType.name }} - Giá:  {{ item.price }}</option>
+              
+            </select>
           </div>
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label for="genre" class="form-label">Thể loại</label>
-              <input
-                v-model="genre"
-                id="genre"
-                type="text"
-                class="form-control"
-                placeholder="Nhập thể loại sách"
-                name="genre"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="pages_count" class="form-label">Số trang</label>
-              <input
-                v-model="pages_count"
-                id="pages_count"
-                type="number"
-                class="form-control"
-                placeholder="Nhập số trang"
-                name="pages_count"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="price" class="form-label">Giá</label>
-              <input
-                v-model="price"
-                id="price"
-                type="number"
-                class="form-control"
-                placeholder="Nhập giá"
-                name="price"
-              />
-            </div>
+
+          <div class="mb-3">
+            <label for="orderDate" class="form-label required"
+              >Ngày mua</label
+            >
+              <input type="date" v-model="orderDate" id="orderDate" class="form-control" />
+          </div>
+
+          <div class="mb-3">
+            <label for="itemCount" class="form-label">Số lượng</label>
+            <input
+              v-model="itemCount"
+              id="itemCount"
+              type="number"
+              class="form-control"
+              placeholder="Nhập số lượng mua"
+            />
           </div>
         </div>
         <div class="modal-footer">
@@ -260,83 +206,33 @@
         </div>
         <div class="modal-body row row-cards">
           <div class="mb-3" style="display: none">
-            <input type="text" id="editbookId" name="id" />
+            <input type="text" v-model="editOrderId" id="editOrderId"/>
           </div>
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label for="editbookTitle" class="form-label">Tên sách</label>
-              <input
-                
-                id="editbookTitle"
-                type="text"
-                class="form-control"
-                placeholder="Nhập tên sách"
-                name="title"
-              />
-            </div>
+          <div class="mb-3">
+            <label for="itemId" class="form-label" >Tên sản phẩm</label>
+            <select class="form-select" v-model="editOrder.itemId">
+              <option value="" selected disabled>Danh sách sản phẩm</option>
+              <option v-for="item in items" :key="item.id" :value="item.id">{{ item.name }} - Loại sản phẩm: {{ item.itemType.name }} - Giá:  {{ item.price }}</option>
+              
+            </select>
+          </div>
 
-            <div class="mb-3">
-              <label for="editauthorId" class="form-label required"
-                >Chọn tác giả</label
-              >
-              <select class="form-select" id="editauthorId" name="authorId">
-                <option value="" selected disabled>Danh sách tác giả</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="editpublisher" class="form-label">Nhà xuất bản</label>
-              <input
-                
-                id="editpublisher"
-                type="text"
-                class="form-control"
-                placeholder="Nhập tên nhà xuất bản"
-                name="publisher"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="editisbn" class="form-label">Mã ISBN</label>
-              <input
-               
-                id="editisbn"
-                type="text"
-                class="form-control"
-                placeholder="Nhập mã isbn"
-                name="isbn"
-              />
-            </div>
+          <div class="mb-3">
+            <label for="orderDate" class="form-label required"
+              >Ngày mua</label
+            >
+              <input type="date" v-model="editOrder.orderDate" id="orderDate" class="form-control" />
           </div>
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label for="editgenre" class="form-label">Thể loại</label>
-              <input
-                id="editgenre"
-                type="text"
-                class="form-control"
-                placeholder="Nhập thể loại sách"
-                name="genre"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="editpages_count" class="form-label">Số trang</label>
-              <input
-                id="editpages_count"
-                type="number"
-                class="form-control"
-                placeholder="Nhập số trang"
-                name="pages_count"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="editprice" class="form-label">Giá</label>
-              <input
-                id="editprice"
-                type="number"
-                class="form-control"
-                placeholder="Nhập giá"
-                name="price"
-              />
-            </div>
+
+          <div class="mb-3">
+            <label for="itemCount" class="form-label">Số lượng</label>
+            <input
+              v-model="itemCount"
+              id="itemCount"
+              type="number"
+              class="form-control"
+              placeholder="Nhập số lượng mua"
+            />
           </div>
         </div>
         <div class="modal-footer">
@@ -347,7 +243,9 @@
           >
             Cancel
           </a>
-          <input class="btn btn-primary ms-auto" type="submit" value="Update" />
+          <a @click="editForm()" class="btn btn-primary ms-auto">
+            Sửa
+          </a>
         </div>
       </form>
     </div>
@@ -371,7 +269,7 @@ export default {
       const result = await axios.get("/api/orders");
       this.orders = result.data;
       const itemsResult = await axios.get("/api/items")
-      this.items = authorsResult.data;
+      this.items = itemsResult.data;
       
       console.log(this.books, "orders");
       console.log(this.authors,"items")
@@ -386,17 +284,21 @@ export default {
       itemId: "",
       itemPrice: "",
       itemTypeId: "",
-      buyDate: "",
+      orderDate: "",
       count: "",
       totalMoney: "",
-
+      editOrder: {
+        itemId: "",
+        orderDate: "",
+        itemCount: "",
+      }
     };
   },
   methods: {
     async submitForm() {
         try {
             const data = {
-              title: this.title,
+              item_id: this.title,
               publisher: this.publisher,
               isbn: this.isbn,
               genre: this.genre,
